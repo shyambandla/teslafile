@@ -8,13 +8,7 @@ const io = new Server(server, {
       origin: '*',
     }
   });
-  const {Coinpayments}= require("coinpayments");
 
-  const client = new Coinpayments({key:"7811b1611ddc075ad15d58a9dad80ac4e9e7e2a4ea2bc4edb7c436c4962f0182",
-    secret:"143Df4a361BCf4Ac59A021412E2850ce4D6A4a5e18E32a4950c935cfDf411a56"})
-  client.getBasicInfo().then((data) => {
-    console.log(data)
-  });;
 
 
 app.get('/success/:id', (req, res,next) => {
@@ -44,9 +38,9 @@ io.on('connection', (socket) => {
     
 
      socket.on('pay-req',(data)=>{
-        client.createTransaction(data).then((result) =>{
+    /*    client.createTransaction(data).then((result) =>{
             socket.emit("pay-resp",result);
-        })
+        })*/
      })
 
 
