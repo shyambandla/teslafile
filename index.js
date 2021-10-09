@@ -1,8 +1,11 @@
 const express = require('express');
-const app = express();
-const http = require('http');
-const server = http.createServer(app);
 const fs = require('fs')
+const app = express();
+const https = require('https');
+const key = fs.readFileSync(' /etc/letsencrypt/live/teslafile.xyz/privkey.pem');
+const cert = fs.readFileSync('/etc/letsencrypt/live/teslafile.xyz/fullchain.pem');
+const server = https.createServer({key: key, cert: cert },app);
+
 const { Server } = require("socket.io");
 const io = new Server(server, {
     cors: {
